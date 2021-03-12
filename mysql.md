@@ -1,4 +1,4 @@
-##mysql面试
+##mysql面试(线上问题排查在后面)
 
 ###一、数据库设计的三大范式
     
@@ -93,6 +93,7 @@
  * MYSQL
  
         采用的隔离级别是可重复读
+        
  * ORACLE  
    
         采用的隔离级别是读已提交
@@ -315,3 +316,51 @@
              REQUIRES_NEW侧重于调用方方法回滚不会影响被调用方法
              NESTED侧重于调用方方法回滚,被调用方法必须全部回滚
         2.同类调用会造成被调用方法注解失效
+        
+        
+###线上问题排查
+
+ * 查看当前连接的进程数(链接数)
+ 
+    show processlist;
+    
+    链接只要存在就会显示一条数据,当没有任务或者阻塞时,其状态为Sleep
+ 
+ * 查看正在执行的事务
+    
+    SELECT t.* FROM information_schema.INNODB_TRX t
+    
+    所有正在执行的事务信息都会记录在该表中
+    
+ * 查看当前出现的锁(只有当出现锁竞争时才会记录在INNODB_LOCKS表中)
+    
+    SELECT t.* FROM information_schema.INNODB_LOCKS t
+ 
+ * 查看锁的等待关系
+        
+        SELECT t.* FROM information_schema.INNODB_LOCK_WAITS t
+ 
+ * kill线程(发生死锁时关闭某线程)
+        
+        kill id;
+        
+        id为INNODB_TRX中trx_mysql_thread_id字段的值。
+ 
+ * 查看当前缓存总打开的表
+ 
+        show open tables where in_use > 0 ;
+        
+        当该结果返回为空时表示没有表被使用,不会发生死锁。
+        
+ * 查看表锁和行锁的竞争情况
+        
+        show status like 'table%';
+        show status like 'InnoDB_row_lock%';
+ 
+ * 设置死锁退出时间
+        
+        set global innodb_lock_wait_timeout = 10;
+ 
+ * 查看最新的死锁日志
+        
+        show engine innodb status;

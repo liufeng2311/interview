@@ -43,7 +43,11 @@
         SerializableDemo类和SerializableDemo1类 
         
 ###JDK事件监听机制
-    
+ 
+ * 监听机制
+        
+        监听机制是观察者模式的一种实现。主要分为监听事件、监听器、事件发布器。   
+        详情参考Spring的监听机制实现
     
 ###JDK动态代理
  
@@ -349,3 +353,5 @@ class UserService {
         
         wait()、sleep()会抛出异常
         park()不抛出异常而是直接退出阻塞
+        
+###

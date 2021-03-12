@@ -182,7 +182,8 @@
         
  * OOM排查
         
-        dmesg |grep -E ‘kill|oom|out of memory’  对Heap size和垃圾回收状况的监控。
+        jps -l   查看jar信息
+        jstat -gcutil pid interval   查看GC各个区域的信息
         jmap -histo:live pid    查看存活的大对象
-        jmap -dump:format=b,file=文件名 [pid] 
+        jmap -dump:format=b,file=文件名 [pid]   MAT分析数据
         

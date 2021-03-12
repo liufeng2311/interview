@@ -18,7 +18,27 @@
  * 什么消息中间件会有什么问题      
         
         分布式事务问题、重复消息、消息丢失、数据一致性等。
+
+###异步、削峰、解耦
+
+ * 异步
         
+        不重要的逻辑可以异步执行。减少接口响应时间。
+ * 削峰
+        
+        将任务的参数直接放置MQ中,然后由消费者去消费。
+ * 解耦 
+         
+        可以动态的增加业务逻辑,只需要对感兴趣的消息进行订阅。
+
+###引入MQ的缺点
+  
+ * 增加代码理解的复杂性
+ 
+ * 可能造成重复消费和数据不一致问题
+ 
+ * MQ需要做好高集群
+               
 ###RocketMQ部署
 
  * 拉取rocketMQ的镜像
@@ -50,7 +70,7 @@
             
         启动brokerServer
             
-            docker run -d -p 10911:10911 -p 10909:10909 -v /data/rocketmq/broker/broker.conf:/etc/rocketmq/broker.conf -v /data/rocketmq/broker/logs:/root/logs -v /data/rocketmq/broker/store:/root/store --name rmqbroker1 -e "NAMESRV_ADDR=192.168.64.157:9876" rocketmqinc/rocketmq sh mqbroker -c /etc/rocketmq/broker.conf
+            docker run -d -p 10911:10911 -p 10909:10909 -v /data/rocketmq/broker/broker1.conf:/etc/rocketmq/broker1.conf -v /data/rocketmq/broker/logs1:/root/logs1 -v /data/rocketmq/broker/store1:/root/store1 --name rmqbroker1 -e "NAMESRV_ADDR=192.168.64.160:9876" rocketmqinc/rocketmq sh mqbroker -c /etc/rocketmq/broker1.conf
             -p 10911:10911 -p 10909:10909    默认NameServer访问10911端口,设置VIP端口时端口-2,即10909,所以两个端口都要开放
             -v /data/rocketmq/broker/logs:/root/logs -v /data/rocketmq/broker/store:/root/store   数据挂载
             -v /data/rocketmq/broker/broker.conf:/etc/rocketmq/broker.conf  挂载第二步创建的配置文件,启动时使用
@@ -206,8 +226,9 @@
         
         RocketMQ无法避免消息重复(Exactly-Once),重复的原因可能有：
         
-        1. 消费者端发生异常,但是数据没有回滚,RocketMQ认定消费失败会再次进行发送。
+        1. 消费者端发生异常,但是数据没有回滚,却通知MQ消费失败,RocketMQ认定消费失败会再次进行发送。
         2. 消费者新增或删除实例时可能因为某一消息没有回复确定导致该消息被某一实例再次消费。
+        3. 生产者由于网络原因在第一次不成功时进行了重发,导致消息重复。
  
  * 解决办法
         
@@ -215,16 +236,18 @@
 
 ###消息顺序消费问题
  
- * 顺序消费
+ * 正常消费消息
         
-        又是我们需要几则消息顺序消费,但是默认同一topic对应的四个队列,消费时也是多线程去获取数据的,
-        默认模式下无法做到顺序消费。
+        消息会被随机的分配到某一个队列中,消费者获取时会存在多个线程同时操作
  
  * 解决办法
         
         RocketMQ为我们提供了顺序消费的实现类。
         我们通过重写MessageQueueSelector来自定义topic的队列选择逻辑,保证同一ID的数据存在同一队列中。
-        消费时我们需要确保一个队列中的对象必须由一个线程去消费(MessageListenerOrderly)。
+        
+        消费者的模式有两种：顺序消费和并发消费。
+        顺序消费表示只有一个节点消费完才会消费下一个节点(MessageListenerOrderly)。
+        并发消费表示有多个线程同时消费同一队列(MessageListenerConcurrently)
 
 ###分布式事务
  
@@ -239,4 +262,29 @@
         发送成功会执行本地的事务方法,根据事务是成功失败向MQ发送消息来决定之前的半消息是提交还是回滚。
         半消息的确认发送也可能失败,MQ通过回调机制来判断,执行成功就让消息可以被消费,失败则删除该半消息。
         
-###RocketMQ的基本使用
+        事务的执行和事务的回调查询需要我们实现TransactionListener类来实现这两个方法。
+        每个事务消息都会存在一个事务ID,同时对应一个状态,我们可以将所有的事务的状态保存到数据库中。
+        
+###RocketMQ消息堆积问题
+
+ * 出现的场景
+        
+        生产者生产的速率快于消费者的消费速率,所有队列普遍积压
+        生产者路由转发存在问题导致部分队列积压
+        消费者IO变慢、消费者宕机
+ 
+ * 解决办法
+        
+        如果消费者的数量小于队列的数量,可以通过增加消费者的数量来解决,消费者的最大数量为队列的数量。
+        
+        如果消费者和队列的数量相等的话,创建新的Topic,将这些堆积的数据发送到新的队列中,启动更多的消费者
+        来进行消费。解决解压后恢复原有的消费者消费即可。
+        
+###MQ选型问题
+ 
+ * 
+ * 
+ 
+ 
+###问题    
+ 4.4.0版本之前不会自动换件topic,会报错
