@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c94b51c-9b10-4c7f-8d42-864f71cb5a7d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/demo/suanfa/ProducerConsumerDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/zookeeper.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/微服务.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/算法.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JVM.md" beforeDir="false" afterPath="$PROJECT_DIR$/JVM.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jdk.md" beforeDir="false" afterPath="$PROJECT_DIR$/jdk.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mybatis.md" beforeDir="false" afterPath="$PROJECT_DIR$/mybatis.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/redis.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rocketMQ.md" beforeDir="false" afterPath="$PROJECT_DIR$/rocketMQ.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring.md" beforeDir="false" afterPath="$PROJECT_DIR$/spring.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/设计模式.md" beforeDir="false" afterPath="$PROJECT_DIR$/设计模式.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/高频面试考点.md" beforeDir="false" afterPath="$PROJECT_DIR$/高频面试考点.md" afterDir="false" />
+    <list default="true" id="877f49c0-494c-4768-a465-c16bca43396d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/git.md" beforeDir="false" afterPath="$PROJECT_DIR$/git.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
