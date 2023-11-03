@@ -278,7 +278,7 @@
        show variables like 'autocommit';
 
   |Variable_name|Value|Desc|
-    |:---:|:---:|:---:|
+                                        |:---:|:---:|:---:|
   |autocommit|ON|开启自动提交|
   |autocommit|OFF|未开启自动提交|
 
@@ -359,6 +359,76 @@
       1. show variables like 'max_connections';  查看设置的最大链接数
       2. show status like 'threads_connected'; 当前已链接数
       3. set GLOBAL max_connections=1000;  修改最大链接数,重启后失效
+
+###二十、MySQL的执行流程
+
+      1. 通过连接器进行连接和身份验证;
+      2. 通过分析器进行语法分析;
+      3. 通过优化器进行查询优化, 索引选择;
+      4. 通过执行器进行查询。
+
+###二十一、MySQL执行计划
+
+* 执行计划
+
+      我们可以使用explain命令来分析SQL的执行计划, 通过 优化器进行语法分析, 并未真正的执行SQL。
+
+* 结果字段分析
+
+    1. id
+
+           id 如果相同，从上往下依次执行。id 不同，id 值越大，执行优先级越高，如果行引用其他行的并集结果，则该值可以为 NULL。
+    2. select_type
+
+           查询的类型，主要用于区分普通查询、联合查询、子查询等复杂的查询。常见的值有：
+                     SIMPLE：简单查询，不包含 UNION 或者子查询。
+                     PRIMARY：查询中如果包含子查询或其他部分，外层的 SELECT 将被标记为 PRIMARY。
+                     SUBQUERY：子查询中的第一个 SELECT。
+                     UNION：在 UNION 语句中，UNION 之后出现的 SELECT。
+                     DERIVED：在 FROM 中出现的子查询将被标记为 DERIVED。
+                     UNION RESULT：UNION 查询的结果
+    3. table
+
+           查询用到的表名，每行都有对应的表名。
+           <unionM,N> : 本行引用了 id 为 M 和 N 的行的 UNION 结果；
+           <derivedN> : 本行引用了 id 为 N 的表所产生的的派生表结果。派生表有可能产生自 FROM 语句中的子查询。 
+           <subqueryN> : 本行引用了 id 为 N 的表所产生的的物化子查询结果。
+    4. type
+
+           查询执行的类型，描述了查询是如何执行的。所有值的顺序从最优到最差排序为：system > const > eq_ref > ref > fulltext > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL
+           system：如果表使用的引擎对于表行数统计是精确的(如：MyISAM),且表中只有一行记录的情况下,访问方法是system ,是const的一种特例。
+           const：表中最多只有一行匹配的记录,一次查询就可以找到,常用于使用主键或唯一索引的所有字段作为查询条件。
+           eq_ref：当连表查询时,前一张表的行在当前这张表中只有一行与之对应。是除了system与const之外最好的join方式,常用于使用主键或唯一索引的所有字段作为连表条件。
+           ref：使用普通索引作为查询条件, 查询结果可能找到多个符合条件的行。
+           index_merge：当查询条件使用了多个索引时, 表示开启了Index Merge优化,此时执行计划中的key列列出了使用到的索引。
+           range：对索引列进行范围查询,执行计划中的key列表示哪个索引被使用了。
+           index：查询遍历了整棵索引树,与ALL类似,只不过扫描的是索引,而索引一般在内存中,速度更快。
+           all：全表扫描。
+
+    5. possible_keys
+
+           possible_keys列表示MySQL执行查询时可能用到的索引。如果这一列为NULL,则表示没有可能用到的索引。
+
+    6. key
+
+           key列表示MySQL实际使用到的索引。如果为NULL, 则表示未用到索引。
+
+    7. key_len
+
+           key_len 列表示 MySQL 实际使用的索引的最大长度；当使用到联合索引时，有可能是多个列的长度和。
+
+    8. rows
+
+           rows列表示根据表统计信息及选用情况,大致估算出找到所需的记录或所需读取的行数,数值越小越好。
+
+    9. extra
+
+           Using filesort：在排序时使用了外部的索引排序，没有用到表内索引进行排序。
+           Using temporary：MySQL 需要创建临时表来存储查询的结果，常见于 ORDER BY 和 GROUP BY。
+           Using index：表明查询使用了覆盖索引，不用回表，查询效率非常高。
+           Using index condition：表示查询优化器选择使用了索引条件下推这个特性。
+           Using where：表明查询使用了 WHERE 子句进行条件过滤。一般在没有使用到索引的时候会出现。
+           Using join buffer (Block Nested Loop)：连表查询的方式，表示当被驱动表的没有使用索引的时候，MySQL 会先将驱动表读出来放到 join buffer 中，再遍历被驱动表与驱动表进行查询。
 
 ###线上问题排查
 
