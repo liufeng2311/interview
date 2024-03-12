@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="877f49c0-494c-4768-a465-c16bca43396d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/git.md" beforeDir="false" afterPath="$PROJECT_DIR$/git.md" afterDir="false" />
+    <list default="true" id="877f49c0-494c-4768-a465-c16bca43396d" name="Default Changelist" comment="JVM学习">
+      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JVM.md" beforeDir="false" afterPath="$PROJECT_DIR$/JVM.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,26 +27,46 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="1nxXStExWIaFhwUvxET9NNJqD6N" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/liufeng/IdeaProjects/interview&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;fe01ce2a7fbac8fafaed7c982a04e229&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.ProducerConsumerDemo">
     <configuration name="ProducerConsumerDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -54,8 +82,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration default="true" type="JetRunConfigurationType">
       <module name="interview" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="interview" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -79,12 +120,12 @@
       </list>
     </option>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1c94b51c-9b10-4c7f-8d42-864f71cb5a7d" name="Default Changelist" comment="" />
       <created>1612332719474</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -109,60 +150,72 @@
       <workItem from="1615122616370" duration="632000" />
       <workItem from="1615363483258" duration="1233000" />
       <workItem from="1615426476942" duration="2023000" />
+      <workItem from="1680768518179" duration="10420000" />
+      <workItem from="1681288209964" duration="1097000" />
+      <workItem from="1686902673333" duration="19000" />
+      <workItem from="1687763983993" duration="19000" />
+      <workItem from="1698389063113" duration="2039000" />
+      <workItem from="1698646748730" duration="358000" />
+      <workItem from="1698647439743" duration="39921000" />
+      <workItem from="1699002484663" duration="1456000" />
+      <workItem from="1699325621339" duration="386000" />
+      <workItem from="1699326259419" duration="1543000" />
+      <workItem from="1705108284742" duration="7233000" />
+      <workItem from="1705129380879" duration="698000" />
+      <workItem from="1709518957932" duration="9861000" />
+      <workItem from="1709640777892" duration="10784000" />
+      <workItem from="1709796470975" duration="1526000" />
+      <workItem from="1709887879827" duration="15065000" />
+      <workItem from="1710122478823" duration="449000" />
+      <workItem from="1710127276338" duration="2175000" />
+      <workItem from="1710158076264" duration="5511000" />
+      <workItem from="1710246209876" duration="2215000" />
     </task>
+    <task id="LOCAL-00001" summary="新增">
+      <created>1680780477347</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680780477347</updated>
+    </task>
+    <task id="LOCAL-00002" summary="新增">
+      <option name="closed" value="true" />
+      <created>1699003334694</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699003334694</updated>
+    </task>
+    <task id="LOCAL-00003" summary="JVM学习">
+      <option name="closed" value="true" />
+      <created>1710122499355</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1710122499355</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="1125" y="311" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1614735640196">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1125" y="311" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1614735640196" />
-    <state x="1100" y="441" key="#com.intellij.ide.util.MemberChooser" timestamp="1612333130301">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1100" y="441" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1612333130301" />
-    <state width="1433" height="42" key="GridCell.Tab.0.bottom" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state width="1433" height="42" key="GridCell.Tab.0.center" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state width="1433" height="42" key="GridCell.Tab.0.left" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state width="1433" height="42" key="GridCell.Tab.0.right" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state width="1433" height="42" key="GridCell.Tab.1.bottom" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state width="1433" height="42" key="GridCell.Tab.1.center" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state width="1433" height="42" key="GridCell.Tab.1.left" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state width="1433" height="42" key="GridCell.Tab.1.right" timestamp="1612347075507">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1433" height="42" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612347075507" />
-    <state x="825" y="350" key="Maven.ArtifactSearchDialog" timestamp="1612333316976">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="825" y="350" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1612333316976" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613355887791">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613355887791" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="新增" />
+    <MESSAGE value="JVM学习" />
+    <option name="LAST_COMMIT_MESSAGE" value="JVM学习" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar:///Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home/src.zip!/java/util/ArrayList.java</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

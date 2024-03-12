@@ -231,9 +231,82 @@
        我们循环时变量应该定义为long, 而不是int, long是不确定次数, 会设置安全点, int 是确定次数, 不会设置安全点。
 
  * 垃圾回收算法的具体实现
+      
+       JVM采用分代的思想管理内存, 根据新生代和老年代的不同特质, 需要实现不同的垃圾收集器。
+       第一代: Serial(新生代) 、 SerialOld(老年代)   两个收集器都是单线程进行垃圾收集的。
+       为了解决单线程收集速度慢的问题, 引入了多线程版本的垃圾收集器
+       Parallel Scavenge(新生代) 、 CMS(老年代) , 尴尬的是两者不能搭配使用, 因此推出了Parallel Scavenge(新生代)对应的老年代收集器Parallel Old
+       Parallel Scavenge关注的是吞吐量, 因此又推出了ParNew(新生代), 该收集器专注于低延时
        
+       最后推出了不区分新生代和老年代的G1收集器
+
+       除了CMS和G1收集器外,其余收集器在收集期间都会STW,
+       
+       CMS收集器的过程：初始标记、并发标记(可执行用户线程)、重新标记、并发执行(可执行用户线程)
+       G1收集器的过程：初始标记、并发标记(可执行用户线程)、最终标记、筛选回收
        
 
+ * GC的吞吐量和低延时概念
+
+        场景假设: 每10秒执行一次GC, 每次耗时100ms, 现在修改为每5s执行一次GC, 每次耗时60ms, 此时响应速度更快了, 但是10s内的GC耗时由100ms
+        生成至120ms, 吞吐量降低了。
+
+       吞吐量指的的用户线程消耗CPU时间占总时间的占比, 该比值越高, 吞吐量越高
+       高吞吐量意味着GC的次数要少, 相应的一次GC的时间会长点
+       
+       低延时意味着每次GC的时间要尽量短, 这就意味着GC的频率更高, 吞吐量低。
+
+       参考文献：https://blog.csdn.net/lijibai_/article/details/126302888
+       
+       
+ * GC日志查看
+
+        参考博客: https://juejin.cn/post/7013196715398283272
+
+![img_1.png](img_1.png)
+
+       
+       
+ 
+ * 内存分配与回收策略
+
+       1. 正常情况下新创建的对象首先会被分配到新生代的Eden区, 当Eden区空间不足时, 会触发Minor GC, 对象的生存年龄+1
+          当对象大于新生代的From区时, 直接分配到老年代。
+          当Minor GC后, Eden区+From区的可存活对象大于To区, 对象直接进入老年代
+          对象的存活年龄到达阈值时, 进入老年代
+          
+       2. 当老年代无法容乃下新的对象时, 触发fullGC
+
+### 常用的JVM命令
+
+ * jps(JVM Process Status) 
+
+       jps 命令用于查看系统中正在执行的java进程的信息, 默认输出进程ID和jar包名称。常用参数如下:
+       -l 输出主类的名称, jar启动的输出jar包路径
+       -v 输出启动时传递的参数
+       -m 出去传递给主类的参数
+ * jstat(JVM Statistics Monitoring Tool) 
+   
+       jstat 命令用于监控JVM中方各项运行状态信息, 可以查看类装载、内存、GC、JIT编译等运行数据
+       
+       jstat <option> vmid [interval] [count]  
+       jstat -gc 10 1000 10      监控线程ID为10的线程的gc情况,没1000ms输出一次,共输出10次
+
+ * jinfo(Configuration Info for Java) 
+
+       jinfo命令用于实时查看和调整JVM的各项参数。
+
+       jinfo -flags 11   查看指定的参数
+
+ * jmap(Memory Map for Java)
+ 
+       jmap 用于获取堆信息的, 常用的为 -heap 查看此时堆内存占用信息    -histo:live   查看存活对象信息
+
+ * jstack(Stack Trace for Java)
+ 
+       jstack命令用于生成JVM此刻的线程快照信息
+      
+### CPU飙升如何排查       
 ### OOM如何排查
 
  * OOM分类
